@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "870741933410",
+    "firebase_url": "https://motivationapp-6b622.firebaseio.com",
+    "project_id": "motivationapp-6b622",
+    "storage_bucket": "motivationapp-6b622.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870741933410:android:49fc510f10c9b6c5",
+        "android_client_info": {
+          "package_name": "com.example.motivationapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870741933410-irl93qmerotkf5s48e9scqi5btu254gv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.motivationapp",
+            "certificate_hash": "af0977f9177fbd1594c507b052f535cf6fc844cb"
+          }
+        },
+        {
+          "client_id": "870741933410-3b0r4m56hfmcs8ea1d8gie7et3obgk2c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx8izTmvH-1WtfyP6g1J0b-rMdKnn0p5g"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870741933410-3b0r4m56hfmcs8ea1d8gie7et3obgk2c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,6 @@
 package com.example.motivationapp;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -31,10 +30,11 @@ public class PopActivity extends Activity {
 
         getWindow().setAttributes(params);
 
+        /*
         Intent intentForSentence = getIntent();
         int posSentence = intentForSentence.getIntExtra("position",0);
         String sentence = Favourite.getFavouriteList().get(posSentence);
         textView_sentence.setText(sentence);
-
+        */
     }
 }

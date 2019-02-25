@@ -1,6 +1,5 @@
-package com.example.motivationapp;
+package com.example.motivationapp.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,9 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+
+import com.example.motivationapp.R;
 
 import java.util.ArrayList;
 
@@ -26,18 +24,7 @@ public class Favourite extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_favourite,container,false);
-        ArrayList<String> listFavourite = getFavouriteList();
-        ListView listViewFavourite = rootView.findViewById(R.id.listView_favourite);
-        listViewFavourite.setAdapter(new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1,listFavourite));
 
-        listViewFavourite.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intentToPop = new Intent(getContext(),PopActivity.class);
-                intentToPop.putExtra("position",position);
-                startActivity(intentToPop);
-            }
-        });
         return rootView;
     }
 
