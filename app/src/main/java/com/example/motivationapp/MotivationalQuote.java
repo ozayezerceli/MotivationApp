@@ -5,28 +5,29 @@ import android.os.Parcelable;
 
 public class MotivationalQuote implements Parcelable {
 
-    private String quoteName;
+    private String quoteId;
     private String quoteImage;
     private String quoteDescription;
     private boolean isFavourite;
 
 
+
     protected MotivationalQuote(Parcel in) {
-        quoteName = in.readString();
+        quoteId = in.readString();
         quoteImage = in.readString();
         quoteDescription = in.readString();
         isFavourite = in.readByte() != 0;
     }
 
-    public MotivationalQuote(String quoteName, String quoteImage, String quoteDescription, boolean isFavourite) {
-        this.quoteName = quoteName;
+    public MotivationalQuote(String quoteId, String quoteImage, String quoteDescription, boolean isFavourite) {
+        this.quoteId = quoteId;
         this.quoteImage = quoteImage;
         this.quoteDescription = quoteDescription;
         this.isFavourite = isFavourite;
     }
 
-    public String getQuoteName() {
-        return quoteName;
+    public String getQuoteId() {
+        return quoteId;
     }
 
     public String getQuoteImage() {
@@ -64,7 +65,7 @@ public class MotivationalQuote implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(quoteName);
+        dest.writeString(quoteId);
         dest.writeString(quoteImage);
         dest.writeString(quoteDescription);
         dest.writeByte((byte) (isFavourite ? 1 : 0));

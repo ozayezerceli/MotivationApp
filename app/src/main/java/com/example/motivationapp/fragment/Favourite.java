@@ -29,13 +29,7 @@ public class Favourite extends Fragment {
     }
 
     public static ArrayList<String> getFavouriteList(){
-        ArrayList<String> arrayList = new ArrayList<String>();
-        arrayList.add("Only I can change my life.");
-        arrayList.add("Good, better, best.");
-        arrayList.add("Life is 10% what happens to you and 90% how you react to it.");
-        arrayList.add("Change your life today.");
-        arrayList.add("Optimism is the faith that leads to achievement.");
 
-        return  arrayList;
+        return  null;
     }
 }

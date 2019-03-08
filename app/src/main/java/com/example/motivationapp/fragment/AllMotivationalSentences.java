@@ -14,14 +14,25 @@ import android.view.ViewGroup;
 import com.example.motivationapp.MotivationalQuote;
 import com.example.motivationapp.R;
 import com.example.motivationapp.recyclerview.MotivationalQuotesAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AllMotivationalSentences extends Fragment implements MotivationalQuotesAdapter.MyListener {
 
     private MotivationalQuotesAdapter motivationalQuotesAdapter;
     private RecyclerView recyclerView;
     private ArrayList<MotivationalQuote> motivationalQuotes;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference myRef;
+
+
+
 
     public static AllMotivationalSentences newInstance(){
         return new AllMotivationalSentences();
@@ -34,6 +45,10 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
         View rootView = inflater.inflate(R.layout.fragment_all_motivational_sentences,container,false);
         motivationalQuotesAdapter = new MotivationalQuotesAdapter((AppCompatActivity) getActivity(),this);
 
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = firebaseDatabase.getReference();
+
+
         motivationalQuotes = motivationalQuotesAdapter.getMotivationalQuotes();
 
         recyclerView = rootView.findViewById(R.id.fragment_all_motivational_sentences_recyclerView);
@@ -42,21 +57,41 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
         if(isAdded()){
             recyclerView.setAdapter(motivationalQuotesAdapter);
         }
-
         getMotivationalQuotes(motivationalQuotes);
 
 
         return rootView;
     }
 
-    public ArrayList<MotivationalQuote> getMotivationalQuotes(ArrayList<MotivationalQuote> motivationalQuotes){
-        for (int i =0 ; i<16; i++){
-            motivationalQuotes.add(new MotivationalQuote("1"+i,
-                    "https://firebasestorage.googleapis.com/v0/b/motivationapp-6b622.appspot.com/o/MotivationalQuotes%2Fquote1.jpg?alt=media&token=64921386-fa3a-44fd-ae6a-7466d72461f0",
-                    "Description",
-                    false));
-        }
-        //database verileri buradan çekilecek
+    public ArrayList<MotivationalQuote> getMotivationalQuotes(final ArrayList<MotivationalQuote> motivationalQuotes){
+        DatabaseReference newReference = firebaseDatabase.getReference("motivationalQuotes");
+        newReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot ds : dataSnapshot.getChildren()){
+                    HashMap<String,String> hashMap =(HashMap<String, String>) ds.getValue();
+
+                    String getFavouriteFromDB = hashMap.get("isFavourite");
+                    boolean isFavourite = Boolean.valueOf(getFavouriteFromDB);
+                    if(!hashMap.isEmpty()){
+                        motivationalQuotes.add(new MotivationalQuote(hashMap.get("quoteId"),
+                                hashMap.get("quoteImage"),
+                                hashMap.get("quoteDescription"),
+                                isFavourite));
+                        motivationalQuotesAdapter.notifyDataSetChanged();
+                    }
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         return motivationalQuotes;
 
     }
@@ -64,4 +99,8 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
     public void MyListener(MotivationalQuote motivationalQuote) {
 
     }
-}
+
+
+
+    }
+
