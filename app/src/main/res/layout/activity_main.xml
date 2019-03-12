@@ -6,13 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/splash_background_quote">
 
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/main_activity_tab_layout"
-        app:tabMode="fixed">
+        app:tabMode="fixed"
+        app:tabBackground="@drawable/tab_color_selector"
+        >
 
     </android.support.design.widget.TabLayout>
 

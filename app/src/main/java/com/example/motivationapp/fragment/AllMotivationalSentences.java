@@ -5,12 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.azoft.carousellayoutmanager.CarouselLayoutManager;
+import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener;
+import com.azoft.carousellayoutmanager.CenterScrollListener;
 import com.example.motivationapp.MotivationalQuote;
 import com.example.motivationapp.R;
 import com.example.motivationapp.recyclerview.MotivationalQuotesAdapter;
@@ -34,6 +36,7 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
 
 
 
+
     public static AllMotivationalSentences newInstance(){
         return new AllMotivationalSentences();
     }
@@ -47,12 +50,17 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         myRef = firebaseDatabase.getReference();
-
-
         motivationalQuotes = motivationalQuotesAdapter.getMotivationalQuotes();
 
+        final CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.VERTICAL);
+        layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
         recyclerView = rootView.findViewById(R.id.fragment_all_motivational_sentences_recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addOnScrollListener(new CenterScrollListener());
+
+        //recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+
 
         if(isAdded()){
             recyclerView.setAdapter(motivationalQuotesAdapter);
