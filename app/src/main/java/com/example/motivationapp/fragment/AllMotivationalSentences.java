@@ -59,16 +59,15 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
         recyclerView.setHasFixedSize(true);
         recyclerView.addOnScrollListener(new CenterScrollListener());
 
-        //recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
-
-
         if(isAdded()){
             recyclerView.setAdapter(motivationalQuotesAdapter);
         }
         getMotivationalQuotes(motivationalQuotes);
-
-
         return rootView;
+    }
+
+    public ArrayList<MotivationalQuote> getMotivationalQuotes(){
+        return motivationalQuotes;
     }
 
     public ArrayList<MotivationalQuote> getMotivationalQuotes(final ArrayList<MotivationalQuote> motivationalQuotes){
@@ -107,6 +106,7 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
     public void MyListener(MotivationalQuote motivationalQuote) {
 
     }
+
 
 
 
