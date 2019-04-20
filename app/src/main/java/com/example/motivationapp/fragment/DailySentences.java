@@ -22,6 +22,7 @@ public class DailySentences extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_daily_sentence,container,false);
 
+
         return rootView;
     }
 }

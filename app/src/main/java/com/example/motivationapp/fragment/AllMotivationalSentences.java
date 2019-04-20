@@ -37,6 +37,7 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
 
 
 
+
     public static AllMotivationalSentences newInstance(){
         return new AllMotivationalSentences();
     }
@@ -78,7 +79,6 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
 
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     HashMap<String,String> hashMap =(HashMap<String, String>) ds.getValue();
-
                     String getFavouriteFromDB = hashMap.get("isFavourite");
                     boolean isFavourite = Boolean.valueOf(getFavouriteFromDB);
                     if(!hashMap.isEmpty()){
@@ -88,7 +88,6 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
                                 isFavourite));
                         motivationalQuotesAdapter.notifyDataSetChanged();
                     }
-
 
                 }
             }

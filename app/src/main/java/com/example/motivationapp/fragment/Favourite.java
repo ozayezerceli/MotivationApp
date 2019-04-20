@@ -5,12 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.azoft.carousellayoutmanager.CarouselLayoutManager;
+import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener;
+import com.azoft.carousellayoutmanager.CenterScrollListener;
 import com.example.motivationapp.MotivationalQuote;
 import com.example.motivationapp.R;
 import com.example.motivationapp.recyclerview.FavouriteQuotesAdapter;
@@ -44,8 +46,12 @@ public class Favourite extends Fragment implements FavouriteQuotesAdapter.MyList
         myRef = firebaseDatabase.getReference();
         favQuotes = favouriteQuotesAdapter.getFavQuotes();
 
+        final CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.VERTICAL);
+        layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
         recyclerView = rootView.findViewById(R.id.fragment_favourite_recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),1));
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.addOnScrollListener(new CenterScrollListener());
 
         if(isAdded()){
             recyclerView.setAdapter(favouriteQuotesAdapter);
@@ -64,13 +70,16 @@ public class Favourite extends Fragment implements FavouriteQuotesAdapter.MyList
                     HashMap<String,String> hashMap = (HashMap<String, String>) ds.getValue();
                     String getFavouriteFromDB = hashMap.get("isFavourite");
                     boolean isFavourite = Boolean.valueOf(getFavouriteFromDB);
-                    if(!hashMap.isEmpty()){
+                    if(!hashMap.isEmpty() || ds.child(getFavouriteFromDB).equals("true")){
                         favQuotes.add(new MotivationalQuote(hashMap.get("quoteId"),
                                 hashMap.get("quoteImage"),
                                 hashMap.get("quoteDescription"),
                                 isFavourite));
                         favouriteQuotesAdapter.notifyDataSetChanged();
+                    }else{
+
                     }
+
 
 
                 }
