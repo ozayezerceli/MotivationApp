@@ -15,7 +15,6 @@ import com.squareup.picasso.Picasso;
 public class FavouriteQuotesViewHolder extends RecyclerView.ViewHolder {
     ImageView imageView;
     ProgressBar progressBar;
-    private int counter = 0;
 
     public FavouriteQuotesViewHolder(@NonNull View itemView) {
         super(itemView);

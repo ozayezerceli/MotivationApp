@@ -16,24 +16,22 @@
     <ImageView
         android:id="@+id/recyclerview_all_quotes_pictures_list_imageview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
+        android:layout_height="match_parent" />
 
     <com.like.LikeButton
         android:id="@+id/all_motivational_sentences_fav_button"
-        android:layout_width="106dp"
-        android:layout_height="72dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@+id/recyclerview_all_quotes_pictures_list_imageview"
         android:layout_alignTop="@+id/recyclerview_all_quotes_pictures_list_imageview"
         android:layout_alignEnd="@+id/recyclerview_all_quotes_pictures_list_imageview"
         android:layout_alignBottom="@+id/recyclerview_all_quotes_pictures_list_imageview"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="324dp"
-        android:layout_marginEnd="301dp"
-        android:layout_marginBottom="4dp"
-        android:paddingLeft="10dp"
-        android:visibility="invisible"
-        app:anim_scale_factor="2.0"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="312dp"
+        android:layout_marginBottom="13dp"
+        android:visibility="visible"
+        app:anim_scale_factor="2"
         app:circle_end_color="@color/colorAccent"
         app:circle_start_color="@color/colorPrimary"
         app:dots_primary_color="#FF2525"
@@ -41,5 +39,7 @@
         app:icon_size="30dp"
         app:icon_type="heart"
         app:is_enabled="true" />
+
+
 
 </RelativeLayout>

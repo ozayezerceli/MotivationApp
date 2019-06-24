@@ -35,73 +35,59 @@ public class MotivationalQuotesViewHolder extends RecyclerView.ViewHolder {
         likeButton = itemView.findViewById(R.id.all_motivational_sentences_fav_button);
         firebaseDatabase = FirebaseDatabase.getInstance();
         myRef = firebaseDatabase.getReference();
+
+
     }
 
-    public void getQuotes(final Context context, final MotivationalQuote motivationalQuote){
+    public void getQuotes(final Context context,final MotivationalQuote motivationalQuote){
         itemView.setTag(motivationalQuote);
         Picasso.get().load(motivationalQuote.getQuoteImage()).fit().centerCrop().into(imageView, new Callback() {
             @Override
             public void onSuccess() {
                 progressBar.setVisibility(View.INVISIBLE);
                 likeButton.setVisibility(View.VISIBLE);
-                if(motivationalQuote.isFavourite() && !likeButton.isLiked()){
-                    likeButton.setLiked(true);
-                    likeButton.setOnLikeListener(new OnLikeListener() {
-                        @Override
-                        public void liked(LikeButton likeButton) {
-                            Toast.makeText(context, "Already Favourite!", Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void unLiked(LikeButton likeButton) {
-                            likeButton.setLiked(false);
-                            deleteFromFavourite(motivationalQuote,context);
-
-
-                        }
-                    });
-
-                }else{
-                    likeButton.setLiked(false);
-                    likeButton.setOnLikeListener(new OnLikeListener() {
-                        @Override
-                        public void liked(LikeButton likeButton) {
-                            likeButton.setLiked(true);
-                            saveAsFavourite(motivationalQuote,context);
-
-
-                        }
-
-                        @Override
-                        public void unLiked(LikeButton likeButton) {
-                            Toast.makeText(context, "Not in Favourite!", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                }
             }
-
             @Override
             public void onError(Exception e) {
 
             }
+
         });
+
+        likeButton.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked(LikeButton likeButton) {
+                if(!motivationalQuote.isFavourite()){
+                    motivationalQuote.setFavourite(true);
+                    likeButton.setLiked(true);
+
+                    Toast.makeText(context, "Added to Favourites!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(context, "It's already Favourite!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void unLiked(LikeButton likeButton) {
+                if(motivationalQuote.isFavourite()){
+                    motivationalQuote.setFavourite(false);
+                    likeButton.setLiked(false);
+
+                    Toast.makeText(context, "Deleted from Favourites!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(context, "It's not already Favourite!", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+
        }
 
-    public void deleteFromFavourite(final MotivationalQuote motivationalQuote,final Context context){
-        String quoteId = "quote"+motivationalQuote.getQuoteId();
-        DatabaseReference newReference = firebaseDatabase.getInstance().getReference("favQuotes").child(quoteId);
-        newReference.removeValue();
-        DatabaseReference updateData = firebaseDatabase.getInstance().getReference("motivationalQuotes").child(quoteId).child("isFavourite");
-        updateData.setValue("false");
-        motivationalQuote.setFavourite(false);
-        Toast.makeText(context, "Deleted from Favourites", Toast.LENGTH_SHORT).show();
 
 
-    }
 
-    public void saveAsFavourite(final MotivationalQuote motivationalQuote,final Context context){
-        String quoteId = "quote"+motivationalQuote.getQuoteId();
+       /* String quoteId = "quote"+motivationalQuote.getQuoteId();
         DatabaseReference newReference = firebaseDatabase.getInstance().getReference("favQuotes");
         if(newReference.child(quoteId).equals(motivationalQuote.getQuoteId())){
             Toast.makeText(context, "Already in Favourite", Toast.LENGTH_SHORT).show();
@@ -116,5 +102,5 @@ public class MotivationalQuotesViewHolder extends RecyclerView.ViewHolder {
             Toast.makeText(context, "Added to Favourites", Toast.LENGTH_SHORT).show();
         }
         }
-
+        */
     }

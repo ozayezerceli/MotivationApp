@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/welcome_screen_bg"
-    tools:context=".homeActivity">
+    tools:context=".SplashActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -26,7 +26,7 @@
         android:layout_marginEnd="34dp"
         android:layout_marginBottom="4dp"
         android:text="Motivol"
-        android:textColor="#FF6960"
+        android:textColor="#71DF1F"
         android:textSize="44sp"
         app:layout_constraintBottom_toTopOf="@+id/app_slogan_textview"
         app:layout_constraintEnd_toEndOf="@+id/imageView" />
@@ -38,7 +38,7 @@
         android:layout_marginEnd="31dp"
         android:layout_marginBottom="187dp"
         android:text="Mutlu ol..."
-        android:textColor="#FFEB3B"
+        android:textColor="#D4FF00"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

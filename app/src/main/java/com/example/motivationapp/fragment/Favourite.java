@@ -16,21 +16,13 @@ import com.azoft.carousellayoutmanager.CenterScrollListener;
 import com.example.motivationapp.MotivationalQuote;
 import com.example.motivationapp.R;
 import com.example.motivationapp.recyclerview.FavouriteQuotesAdapter;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Favourite extends Fragment implements FavouriteQuotesAdapter.MyListener {
     private RecyclerView recyclerView;
-    private ArrayList<MotivationalQuote> favQuotes;
+    public static ArrayList<MotivationalQuote> favQuotes;
     private FavouriteQuotesAdapter favouriteQuotesAdapter;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference myRef;
 
     public static Favourite newInstance(){
         return new Favourite();
@@ -42,10 +34,7 @@ public class Favourite extends Fragment implements FavouriteQuotesAdapter.MyList
 
         View rootView = inflater.inflate(R.layout.fragment_favourite,container,false);
         favouriteQuotesAdapter = new FavouriteQuotesAdapter((AppCompatActivity) getActivity(),this);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = firebaseDatabase.getReference();
         favQuotes = favouriteQuotesAdapter.getFavQuotes();
-
         final CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.VERTICAL);
         layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
         recyclerView = rootView.findViewById(R.id.fragment_favourite_recyclerView);
@@ -56,12 +45,17 @@ public class Favourite extends Fragment implements FavouriteQuotesAdapter.MyList
         if(isAdded()){
             recyclerView.setAdapter(favouriteQuotesAdapter);
         }
-        getFavouriteList(favQuotes);
+        getFavQuotes();
+        favouriteQuotesAdapter.notifyDataSetChanged();
         return rootView;
     }
 
-    public ArrayList<MotivationalQuote> getFavouriteList(final ArrayList<MotivationalQuote> favQuotes){
-        DatabaseReference newReference = firebaseDatabase.getReference("favQuotes");
+
+    public ArrayList<MotivationalQuote> getFavouriteList(ArrayList<MotivationalQuote> favQuotes){
+
+
+
+        /*   DatabaseReference newReference = firebaseDatabase.getReference("favQuotes");
         newReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -89,7 +83,7 @@ public class Favourite extends Fragment implements FavouriteQuotesAdapter.MyList
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
+        }); */
         return favQuotes;
     }
 
