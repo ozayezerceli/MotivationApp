@@ -3,6 +3,7 @@ package com.example.motivationapp.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -32,9 +33,7 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
     private ArrayList<MotivationalQuote> motivationalQuotes;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference myRef;
-
-
-
+    private FloatingActionButton fab;
 
 
     public static AllMotivationalSentences newInstance(){
@@ -47,26 +46,34 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
 
         View rootView = inflater.inflate(R.layout.fragment_all_motivational_sentences,container,false);
         motivationalQuotesAdapter = new MotivationalQuotesAdapter((AppCompatActivity) getActivity(),this);
-
         firebaseDatabase = FirebaseDatabase.getInstance();
         myRef = firebaseDatabase.getReference();
         motivationalQuotes = motivationalQuotesAdapter.getMotivationalQuotes();
-
         final CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.VERTICAL);
         layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
         recyclerView = rootView.findViewById(R.id.fragment_all_motivational_sentences_recyclerView);
+        fab = rootView.findViewById(R.id.fab);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.addOnScrollListener(new CenterScrollListener());
-
         if(isAdded()){
             recyclerView.setAdapter(motivationalQuotesAdapter);
         }
+        motivationalQuotes.clear();
         getMotivationalQuotes(motivationalQuotes);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.getLayoutManager().smoothScrollToPosition(recyclerView,null,0);
+            }
+        });
+        motivationalQuotesAdapter.notifyDataSetChanged();
         return rootView;
     }
 
-    public ArrayList<MotivationalQuote> getMotivationalQuotes(){
+
+
+    public ArrayList<MotivationalQuote> getQuotes(){
         return motivationalQuotes;
     }
 
@@ -78,7 +85,6 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
 
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
                     HashMap<String,String> hashMap =(HashMap<String, String>) ds.getValue();
-
                     String getFavouriteFromDB = hashMap.get("isFavourite");
                     boolean isFavourite = Boolean.valueOf(getFavouriteFromDB);
                     if(!hashMap.isEmpty()){
@@ -88,7 +94,6 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
                                 isFavourite));
                         motivationalQuotesAdapter.notifyDataSetChanged();
                     }
-
 
                 }
             }
@@ -102,13 +107,14 @@ public class AllMotivationalSentences extends Fragment implements MotivationalQu
         return motivationalQuotes;
 
     }
+
+
+
+
+
     @Override
     public void MyListener(MotivationalQuote motivationalQuote) {
 
     }
-
-
-
-
     }
 

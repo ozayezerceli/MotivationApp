@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    tools:context=".SignUpPage">
+
+    <EditText
+        android:id="@+id/signUp_userEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="23dp"
+        android:drawableLeft="@drawable/ic_action_mail"
+        android:ems="10"
+        android:hint="e-mail adresi"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/signUp_password"
+        app:layout_constraintEnd_toStartOf="@+id/signUp_ImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_kullanıcıAdı" />
+
+    <EditText
+        android:id="@+id/signUp_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:drawableLeft="@drawable/ic_action_pass"
+        android:ems="10"
+        android:hint="şifre"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/signUp_userEmail"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_userEmail" />
+
+    <Button
+        android:id="@+id/signUp_kayıt"
+        android:layout_width="162dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="308dp"
+        android:onClick="signUp"
+        android:text="kayıt ol"
+        android:background="@drawable/login_button_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_birthDate"
+        app:layout_constraintVertical_bias="0.865" />
+
+    <EditText
+        android:id="@+id/signUp_kullanıcıAdı"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="66dp"
+        android:layout_marginBottom="28dp"
+        android:drawableLeft="@drawable/ic_action_name"
+        android:ems="10"
+        android:hint="kullanıcı ismi"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/signUp_userEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/signUp_textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginBottom="68dp"
+        android:text='"Tüm muhteşem hikayeler iki şekilde başlar: ya bir insan bir yolculuğa çıkar, ya da şehre bir yabancı gelir.." -Tolstoy'
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_ImageView" />
+
+    <ImageView
+        android:id="@+id/signUp_ImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="225dp"
+        app:layout_constraintBottom_toTopOf="@+id/signUp_textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/signUp_userEmail"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/application_logo" />
+
+    <EditText
+        android:id="@+id/signUp_birthDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:drawableLeft="@drawable/ic_action_date"
+        android:ems="10"
+        android:hint="doğum tarihi"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="@+id/signUp_password"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_password" />
+</android.support.constraint.ConstraintLayout>
