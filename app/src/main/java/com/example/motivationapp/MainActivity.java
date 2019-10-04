@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.motivationapp.fragment.ViewPagerAdapter;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        MobileAds.initialize(this,"ca-app-pub-8448457760004752~4372397309");
         mToolBar = findViewById(R.id.activity_main_toolbar);
         viewPager = findViewById(R.id.main_activity_view_pager);
         tabLayout = findViewById(R.id.main_activity_tab_layout);
