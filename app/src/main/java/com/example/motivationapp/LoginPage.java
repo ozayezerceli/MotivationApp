@@ -36,11 +36,10 @@ public class LoginPage extends AppCompatActivity {
 
         FirebaseUser user = mAuth.getCurrentUser();
 
-
         if (user != null){
             goToMain();
             finish();
-        }
+       }
     }
 
     public void signUp(View v){
@@ -67,6 +66,8 @@ public class LoginPage extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+
 
 
 }
