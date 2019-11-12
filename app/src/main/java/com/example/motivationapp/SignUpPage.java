@@ -93,6 +93,7 @@ public class SignUpPage extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(SignUpPage.this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
