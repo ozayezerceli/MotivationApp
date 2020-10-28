@@ -1,6 +1,5 @@
-package com.example.motivationapp;
+package com.example.motivationapp.fragment;
 
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -17,12 +16,15 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
        switch (i){
            case 0:
-               selectedFragment = DailySentences.newInstance();
+               selectedFragment = AllMotivationalSentences.newInstance();
                break;
            case 1:
-               selectedFragment = Favourite.newInstance();
+               selectedFragment = DailySentences.newInstance();
                break;
            case 2:
+               selectedFragment = Favourite.newInstance();
+               break;
+           case 3:
                selectedFragment = NotificationReminder.newInstance();
                break;
                default:
@@ -33,27 +35,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        CharSequence selectedTitle;
 
-        switch (position){
-            case 0:
-                selectedTitle = "Daily Sentence";
-                break;
-            case 1:
-                selectedTitle = "Favourites";
-                break;
-            case 2:
-                selectedTitle = "Reminder";
-                break;
-                default:
-                    return null;
-        }
-        return selectedTitle;
-    }
+
 }

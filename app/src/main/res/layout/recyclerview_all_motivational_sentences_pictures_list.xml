@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:orientation="vertical"
+    >
+
+    <ProgressBar
+        android:id="@+id/recyclerview_all_quotes_pictures_list_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
+    <ImageView
+        android:id="@+id/recyclerview_all_quotes_pictures_list_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.like.LikeButton
+        android:id="@+id/all_motivational_sentences_fav_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignStart="@+id/recyclerview_all_quotes_pictures_list_imageview"
+        android:layout_alignTop="@+id/recyclerview_all_quotes_pictures_list_imageview"
+        android:layout_alignEnd="@+id/recyclerview_all_quotes_pictures_list_imageview"
+        android:layout_alignBottom="@+id/recyclerview_all_quotes_pictures_list_imageview"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="309dp"
+        android:layout_marginBottom="14dp"
+        android:visibility="invisible"
+        app:icon_size="15dp"
+        app:icon_type="heart" />
+
+
+</RelativeLayout>

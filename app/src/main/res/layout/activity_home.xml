@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/welcome_screen_bg"
+    tools:context=".SplashActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="219dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="255dp"
+        android:layout_marginBottom="52dp"
+        android:src="@drawable/application_logo"
+        app:layout_constraintBottom_toTopOf="@+id/app_slogan_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/app_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="34dp"
+        android:layout_marginBottom="4dp"
+        android:text="Motivol"
+        android:textColor="#71DF1F"
+        android:textSize="44sp"
+        app:layout_constraintBottom_toTopOf="@+id/app_slogan_textview"
+        app:layout_constraintEnd_toEndOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/app_slogan_textview"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="187dp"
+        android:text="Mutlu ol..."
+        android:textColor="#D4FF00"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+</android.support.constraint.ConstraintLayout>
+
+
